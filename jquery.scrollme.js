@@ -176,6 +176,7 @@ var scrollme = (function($) {
           effect.element = $(this);
 
           effect.when = effect.element.data('when');
+          effect.offset = effect.element.data('offset') || 0;
           effect.from = effect.element.data('from');
           effect.to = effect.element.data('to');
 
@@ -264,18 +265,18 @@ var scrollme = (function($) {
         switch (effect.when) {
           case 'view': // Maintained for backwards compatibility
           case 'span':
-            var start = element.top - _this.viewport_height;
-            var end = element.bottom;
+            var start = element.top - effect.offset - _this.viewport_height;
+            var end = element.bottom - effect.offset;
             break;
 
           case 'exit':
-            var start = element.bottom - _this.viewport_height;
-            var end = element.bottom;
+            var start = element.bottom - effect.offset - _this.viewport_height;
+            var end = element.bottom - effect.offset;
             break;
 
           default:
-            var start = element.top - _this.viewport_height;
-            var end = element.top;
+            var start = element.top - effect.offset - _this.viewport_height;
+            var end = element.top - effect.offset;
             break;
         }
 
