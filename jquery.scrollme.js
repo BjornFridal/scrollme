@@ -216,7 +216,6 @@ var scrollme = (function($) {
       element.effects = effects;
 
       _this.elements.push(element);
-      //console.dir(element.effects);
     });
   };
 
@@ -253,12 +252,6 @@ var scrollme = (function($) {
 
       for (var e = 0; e < effects_length; e++) {
         var effect = element.effects[e];
-
-        console.dir(effect.properties);
-
-        if (effect.properties.disableMobile && effect.properties.disableMobile === 'true') {
-          console.log('nao anima viadu');
-        }
 
         // Get effect animation boundaries
 
@@ -487,13 +480,6 @@ var scrollme = (function($) {
       _this.elements[i].bottom = position.top + element_height;
     }
   };
-
-  // ----------------------------------------------------------------------------------------------------
-  // Bind initialisation
-
-  //$document.on( _this.init_events.join( ' ' ) , function(){ _this.init(); } );
-
-  // ----------------------------------------------------------------------------------------------------
 
   return _this;
 
