@@ -27,7 +27,9 @@ var scrollme = (function($) {
 
   _this.elements = [];
   _this.elements_in_view = [];
-
+  _this.defaults = {
+    disable_on_mobile: true
+  };
   _this.property_defaults = {
     opacity: 1,
     translatex: 0,
@@ -112,13 +114,13 @@ var scrollme = (function($) {
   // ----------------------------------------------------------------------------------------------------
   // Initialisation
 
-  _this.init = function(disable_on_mobile) {
-    // Cancel initialization if the mobile option is set as a parameter
+  _this.init = function(options) {
+    _this.settings = $.extend({}, _this.defaults, options);
 
-    if (disable_on_mobile && disable_on_mobile === 'disable_on_mobile') {
-      if (_this.is_mobile()) return false;
-    } else if (disable_on_mobile) {
-      throw "unknown parameter '" + disable_on_mobile + "' on init()";
+    // Cancel initialization on mobile devices if the disable_on_mobile option is active
+
+    if (_this.settings.disable_on_mobile && _this.is_mobile()) {
+      return false;
     }
 
     // Load all elements to animate
